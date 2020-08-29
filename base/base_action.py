@@ -31,7 +31,7 @@ class BaseAction:
             xpath_mid = "@" + alist[0] + "='" + alist[1] + "'"
         else:
             raise Exception("XPATH expression not correct.")
-        return xpath_mid + 'and'
+        return xpath_mid + 'and '
 
     def make_xpath(self, expr):
         xpath_start = '//*['
@@ -40,11 +40,11 @@ class BaseAction:
         if isinstance(expr, str):
             if expr.startswith("//*["):
                 return expr
-            xpath_mid = self.make_xpath_mid(expr).rstrip('and')
+            xpath_mid = self.make_xpath_mid(expr).rstrip('and ')
         elif isinstance(expr, list):
             for i in expr:
                 xpath_mid += self.make_xpath_mid(i)
-            xpath_mid = xpath_mid.rstrip('and')
+            xpath_mid = xpath_mid.rstrip('and ')
         else:
             raise TypeError("XPATH expression must be a string or a list.")
         return xpath_start + xpath_mid + xpath_end
